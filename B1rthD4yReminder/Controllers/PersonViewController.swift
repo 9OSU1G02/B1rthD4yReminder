@@ -7,11 +7,16 @@
 
 import UIKit
 
+
 class PersonViewController: UIViewController {
     
     // MARK: - Properties
     let imagePickerController = UIImagePickerController()
     let datePicker = UIDatePicker()
+    var dateFromDatePicker = Date()
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -20,11 +25,21 @@ class PersonViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet var textFieldCollection: [UITextField]!
+    @IBOutlet weak var notificationSwitch: UISwitch!
     
     
     
     // MARK: - IBActions
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        let person = Person(entity: Person.entity(), insertInto: context)
+        person.name = nameTextField.text!
+        person.avatar = avatarImageView.image?.pngData()
+        person.email = emailTextField.text
+        person.phone = phoneNumberTextField.text
+        person.dob = dateFromDatePicker
+        person.mob = Int32(Calendar.current.dateComponents([.month], from: dateFromDatePicker).month!)
+        person.notification = notificationSwitch.isOn
+        appDelegate.saveContext()
     }
     @IBAction func changeAvatarButtonPressed(_ sender: UIButton) {
         showChangeAvatarActionSheet()
@@ -73,6 +88,7 @@ class PersonViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
+        dateFromDatePicker = datePicker.date
         dayOfBirthTextField.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
     }

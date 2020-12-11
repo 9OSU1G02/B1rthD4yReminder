@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B624D26E25833BE000403D56 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624D26C25833BE000403D56 /* Person+CoreDataClass.swift */; };
+		B624D26F25833BE000403D56 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624D26D25833BE000403D56 /* Person+CoreDataProperties.swift */; };
+		B624D27225833E5800403D56 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624D27125833E5800403D56 /* PersonTableViewCell.swift */; };
 		B6F4B1B42581F329005268F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4B1B32581F329005268F5 /* AppDelegate.swift */; };
 		B6F4B1B62581F329005268F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4B1B52581F329005268F5 /* SceneDelegate.swift */; };
 		B6F4B1BB2581F329005268F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F4B1B92581F329005268F5 /* Main.storyboard */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B624D26C25833BE000403D56 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B624D26D25833BE000403D56 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B624D27125833E5800403D56 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
 		B6F4B1B02581F329005268F5 /* B1rthD4yReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = B1rthD4yReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F4B1B32581F329005268F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F4B1B52581F329005268F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +52,8 @@
 		B6F4B1A72581F329005268F5 = {
 			isa = PBXGroup;
 			children = (
+				B624D26C25833BE000403D56 /* Person+CoreDataClass.swift */,
+				B624D26D25833BE000403D56 /* Person+CoreDataProperties.swift */,
 				B6F4B1B22581F329005268F5 /* B1rthD4yReminder */,
 				B6F4B1B12581F329005268F5 /* Products */,
 			);
@@ -80,6 +88,7 @@
 			children = (
 				B6F4B1CF258203AD005268F5 /* PeopleViewController.swift */,
 				B6F4B1D225820412005268F5 /* PersonViewController.swift */,
+				B624D27125833E5800403D56 /* PersonTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -163,8 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F4B1D325820412005268F5 /* PersonViewController.swift in Sources */,
+				B624D26E25833BE000403D56 /* Person+CoreDataClass.swift in Sources */,
 				B6F4B1BE2581F329005268F5 /* B1rthD4yReminder.xcdatamodeld in Sources */,
+				B624D27225833E5800403D56 /* PersonTableViewCell.swift in Sources */,
 				B6F4B1D0258203AD005268F5 /* PeopleViewController.swift in Sources */,
+				B624D26F25833BE000403D56 /* Person+CoreDataProperties.swift in Sources */,
 				B6F4B1D725820A60005268F5 /* Extension.swift in Sources */,
 				B6F4B1B42581F329005268F5 /* AppDelegate.swift in Sources */,
 				B6F4B1B62581F329005268F5 /* SceneDelegate.swift in Sources */,

@@ -133,10 +133,10 @@
             </objects>
             <point key="canvasLocation" x="1596" y="76"/>
         </scene>
-        <!--View Controller-->
+        <!--People View Controller-->
         <scene sceneID="pU2-ZE-lSf">
             <objects>
-                <viewController id="tFI-pE-FIB" sceneMemberID="viewController">
+                <viewController id="tFI-pE-FIB" customClass="PeopleViewController" customModule="B1rthD4yReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uzW-o6-LNk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -145,7 +145,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="nMz-qs-II6">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="nMz-qs-II6" customClass="PersonTableViewCell" customModule="B1rthD4yReminder" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nMz-qs-II6" id="L2f-tL-L14">
@@ -192,6 +192,12 @@
                                                 <constraint firstItem="nI9-xp-wI5" firstAttribute="centerY" secondItem="L2f-tL-L14" secondAttribute="centerY" id="xeO-kn-fld"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImageView" destination="u4x-SX-oL4" id="GuF-CQ-6WT"/>
+                                            <outlet property="dobLabel" destination="8xo-7P-DuB" id="Dhh-zK-253"/>
+                                            <outlet property="isTodayBirthdayLabel" destination="BGF-aW-7r4" id="vgk-dz-RL7"/>
+                                            <outlet property="nameLabel" destination="r97-91-qrt" id="Kpy-t2-bCN"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -208,10 +214,13 @@
                     <navigationItem key="navigationItem" id="2BZ-07-enw">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="person.badge.plus" catalog="system" id="m99-1v-PbZ">
                             <connections>
-                                <segue destination="4Ta-s7-dEU" kind="show" id="qr1-uD-5LC"/>
+                                <segue destination="4Ta-s7-dEU" kind="show" id="tlt-uc-BG9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="peopleTableView" destination="PM1-Vp-Cfi" id="odq-9Z-nQE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YUU-C1-Ji9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -321,6 +330,7 @@
                         <outlet property="dayOfBirthTextField" destination="Gli-Ud-fi8" id="j3o-sY-2uf"/>
                         <outlet property="emailTextField" destination="qE3-45-6mL" id="XNb-qg-jav"/>
                         <outlet property="nameTextField" destination="MlM-Dd-xoI" id="pGg-C8-wVq"/>
+                        <outlet property="notificationSwitch" destination="KXU-dd-4rX" id="xtl-hv-H2b"/>
                         <outlet property="phoneNumberTextField" destination="Jo1-o1-LGW" id="e3K-LM-0ij"/>
                         <outletCollection property="textFieldCollection" destination="MlM-Dd-xoI" collectionClass="NSMutableArray" id="DAE-LC-ibg"/>
                         <outletCollection property="textFieldCollection" destination="Gli-Ud-fi8" collectionClass="NSMutableArray" id="z4p-Oy-llA"/>
