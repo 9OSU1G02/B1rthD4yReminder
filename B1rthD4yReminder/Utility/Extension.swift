@@ -66,7 +66,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone = TimeZone(identifier: "Asia/Jakarta")
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "MMM d, yyyy"
         return dateFormatter.string(from: self)
     }
 }
@@ -75,7 +75,7 @@ extension String {
     
     func convertToDate() -> Date? {
         let dateFormatter           = DateFormatter()
-        dateFormatter.dateFormat    = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.dateFormat    = "MMM d, yyyy"
         dateFormatter.locale        = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone      = .current
         return dateFormatter.date(from: self)

@@ -11,5 +11,7 @@ import CoreData
 
 @objc(Person)
 public class Person: NSManagedObject {
-
+    var monthName: String {
+        return DateFormatter().monthSymbols[Int(mob) - 1]
+    }
 }

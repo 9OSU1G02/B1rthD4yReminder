@@ -1,44 +1,47 @@
 //
-//  PeopleViewController.swift
+//  BirthDayToDayViewController.swift
 //  B1rthD4yReminder
 //
-//  Created by Nguyen Quoc Huy on 12/10/20.
+//  Created by Nguyen Quoc Huy on 12/12/20.
 //
 
 import UIKit
 import CoreData
-class PeopleViewController: UIViewController {
+class BirthDayToDayViewController: UIViewController {
     
-    let searchController = UISearchController()
     private var textQuery = ""
     private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-      private var fetchedRC: NSFetchedResultsController<Person>!
+    private var fetchedRC: NSFetchedResultsController<Person>!
+    
+    @IBOutlet weak var birthDayTodayTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        peopleTableView.delegate = self
-        peopleTableView.dataSource = self
-        configureSearchController()
+        birthDayTodayTableView.delegate = self
+        birthDayTodayTableView.dataSource = self
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         refresh()
     }
-    @IBOutlet weak var peopleTableView: UITableView!
     
-    
-    func configureSearchController() {
-        searchController.searchResultsUpdater                   = self
-        searchController.searchBar.placeholder                  = "Search for a username"
-        searchController.obscuresBackgroundDuringPresentation   = false
-        navigationItem.searchController                         = searchController
-    }
-    
-    private func refresh() {
+        private func refresh() {
         let request = Person.fetchRequest() as NSFetchRequest<Person>
+        
+        let currentMotn = Int32(Calendar.current.dateComponents([.month], from: Date()).month!)
+        let currentDay = Int32(Calendar.current.dateComponents([.day], from: Date()).day!)
+        
+        let monthPredicate = NSPredicate(format: "mob == %d", currentMotn)
+        let dayPredicate = NSPredicate(format: "dob == %d", currentDay)
+        
         if !textQuery.isEmpty {
-            request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", textQuery)
+            let textQueryPredicate = NSPredicate(format: "name CONTAINS[cd] %@", textQuery)
+            let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [monthPredicate,dayPredicate,textQueryPredicate])
+            request.predicate = compoundPredicate
+            }
+        else {
+            let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [monthPredicate, dayPredicate])
+            request.predicate = compoundPredicate
         }
         let monthOfBirth = NSSortDescriptor(key: #keyPath(Person.mob), ascending: true)
         let sort = NSSortDescriptor(key: #keyPath(Person.name), ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
@@ -49,14 +52,13 @@ class PeopleViewController: UIViewController {
         } catch let error as NSError {
             print("Could not fetch. \(error),\(error.userInfo)")
         }
-        peopleTableView.reloadData()
+        birthDayTodayTableView.reloadData()
     }
 }
 
-// MARK: - Extension
 
-extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
+extension BirthDayToDayViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedRC.sections?.count ?? 0
     }
@@ -69,7 +71,7 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! PersonTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BirthDayToDayTableViewCell
         cell.config(person: fetchedRC.object(at: indexPath))
         return cell
     }
@@ -88,24 +90,16 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return headerView
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let person = fetchedRC.object(at: indexPath)
-        let personVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "personVC") as! PersonViewController
-        personVC.person = person
-        navigationController?.pushViewController(personVC, animated: true)
-    }
 }
 
-
-extension PeopleViewController: UISearchResultsUpdating {
+extension BirthDayToDayViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
             return
         }
         textQuery = searchText
         refresh()
-        peopleTableView.reloadData()
+        birthDayTodayTableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -113,6 +107,6 @@ extension PeopleViewController: UISearchResultsUpdating {
         searchBar.text = nil
         searchBar.resignFirstResponder()
         refresh()
-        peopleTableView.reloadData()
+        birthDayTodayTableView.reloadData()
     }
 }

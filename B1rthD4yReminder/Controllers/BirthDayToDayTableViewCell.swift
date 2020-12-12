@@ -1,15 +1,14 @@
 //
-//  PersonTableViewCell.swift
+//  BirthDayToDayTableViewCell.swift
 //  B1rthD4yReminder
 //
-//  Created by Nguyen Quoc Huy on 12/11/20.
+//  Created by Nguyen Quoc Huy on 12/12/20.
 //
 
 import UIKit
 
-class PersonTableViewCell: UITableViewCell {
+class BirthDayToDayTableViewCell: UITableViewCell {
 
-    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dobLabel: UILabel!
@@ -33,8 +32,8 @@ class PersonTableViewCell: UITableViewCell {
     
     
     private func isTodayBirthDay(birthDay: Date) -> Bool {
-        let diffMonth = Calendar.current.dateComponents([.month], from: birthDay, to: Date()).month
-        let diffDay = Calendar.current.dateComponents([.day], from: birthDay, to: Date()).day
-        return diffMonth! + diffDay! == 0
+        let diff = Calendar.current.dateComponents([.day,.month], from: birthDay, to: Date())
+        return diff.day == 0
     }
+
 }

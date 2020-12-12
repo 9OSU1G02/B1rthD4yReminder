@@ -11,16 +11,16 @@
         <!--Birthday Today-->
         <scene sceneID="XEd-BM-RgT">
             <objects>
-                <viewController id="EeY-8K-DHu" sceneMemberID="viewController">
+                <viewController id="EeY-8K-DHu" customClass="BirthDayToDayViewController" customModule="B1rthD4yReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aEz-HR-IJR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rhe-T1-ehR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rhe-T1-ehR">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="d6s-CU-sd7">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="80" id="d6s-CU-sd7" customClass="BirthDayToDayTableViewCell" customModule="B1rthD4yReminder" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d6s-CU-sd7" id="2pP-W4-ZmO">
@@ -68,6 +68,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="avatarImageView" destination="Ndp-p2-W4R" id="FpI-1c-1qw"/>
+                                            <outlet property="dobLabel" destination="rZD-Hl-HRO" id="zF3-Tz-i0s"/>
+                                            <outlet property="isTodayBirthdayLabel" destination="RaR-hU-MjN" id="3I3-7d-dkd"/>
+                                            <outlet property="nameLabel" destination="P3k-va-7OD" id="vaC-Fh-NgZ"/>
                                             <segue destination="Uok-vs-FTP" kind="show" id="L2l-jk-o9C"/>
                                         </connections>
                                     </tableViewCell>
@@ -84,6 +88,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Birthday Today" image="heart" catalog="system" selectedImage="heart" id="sT5-sC-EEK"/>
+                    <connections>
+                        <outlet property="birthDayTodayTableView" destination="rhe-T1-ehR" id="B9R-5y-q7O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pab-0P-SYL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -141,7 +148,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PM1-Vp-Cfi">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PM1-Vp-Cfi">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -229,7 +236,7 @@
         <!--Person View Controller-->
         <scene sceneID="Ocq-gz-1l5">
             <objects>
-                <viewController id="4Ta-s7-dEU" customClass="PersonViewController" customModule="B1rthD4yReminder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="personVC" id="4Ta-s7-dEU" customClass="PersonViewController" customModule="B1rthD4yReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wME-TM-UXn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

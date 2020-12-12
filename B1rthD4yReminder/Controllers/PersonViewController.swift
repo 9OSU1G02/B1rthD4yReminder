@@ -9,6 +9,7 @@ import UIKit
 
 
 class PersonViewController: UIViewController {
+    var person: Person?
     
     // MARK: - Properties
     let imagePickerController = UIImagePickerController()
@@ -31,18 +32,52 @@ class PersonViewController: UIViewController {
     
     // MARK: - IBActions
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        let person = Person(entity: Person.entity(), insertInto: context)
-        person.name = nameTextField.text!
-        person.avatar = avatarImageView.image?.pngData()
-        person.email = emailTextField.text
-        person.phone = phoneNumberTextField.text
-        person.dob = dateFromDatePicker
-        person.mob = Int32(Calendar.current.dateComponents([.month], from: dateFromDatePicker).month!)
-        person.notification = notificationSwitch.isOn
+        guard nameTextField.text != "", dayOfBirthTextField.text != "" else {
+            let alert = UIAlertController(title: "Warning", message: "Please Fill in Name and Day of Birth", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            present(alert, animated: true, completion: nil)
+            return
+        }
+        if let person = person {
+            person.name = nameTextField.text!
+            person.avatar = avatarImageView.image?.pngData()
+            person.email = emailTextField.text
+            person.phone = phoneNumberTextField.text
+            person.birthday = dayOfBirthTextField.text!.convertToDate() ?? Date()
+            person.mob = Int32(Calendar.current.dateComponents([.month], from: person.birthday).month!)
+            person.dob = Int32(Calendar.current.dateComponents([.day], from: person.birthday).day!)
+            person.notification = notificationSwitch.isOn
+        }
+        else {
+            let person = Person(entity: Person.entity(), insertInto: context)
+            person.name = nameTextField.text!
+            person.avatar = avatarImageView.image?.pngData()
+            person.email = emailTextField.text
+            person.phone = phoneNumberTextField.text
+            person.birthday = dateFromDatePicker
+            person.mob = Int32(Calendar.current.dateComponents([.month], from: dateFromDatePicker).month!)
+            person.dob = Int32(Calendar.current.dateComponents([.day], from: dateFromDatePicker).day!)
+            person.notification = notificationSwitch.isOn
+        }
         appDelegate.saveContext()
     }
     @IBAction func changeAvatarButtonPressed(_ sender: UIButton) {
         showChangeAvatarActionSheet()
+    }
+    
+    private func setupUI() {
+        guard let person = self.person else {return}
+        if let data = person.avatar {
+            avatarImageView.image = UIImage(data: data)?.circleMasked
+        }
+        else {
+            avatarImageView.image = UIImage(named: "avatar")
+        }
+        nameTextField.text = person.name
+        dayOfBirthTextField.text = person.birthday.convertToDayMonthYearFormat()
+        emailTextField.text = person.email
+        phoneNumberTextField.text = person.phone
+        notificationSwitch.isOn = person.notification
     }
     
     func setupDismissKeyboardGesture() {
@@ -52,6 +87,7 @@ class PersonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         phoneNumberTextField.addDoneButton()
         setupTextFieldDelegate()
         configureImagePickerController()
