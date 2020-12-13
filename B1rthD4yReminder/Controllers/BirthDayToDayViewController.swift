@@ -25,6 +25,13 @@ class BirthDayToDayViewController: UIViewController {
         refresh()
     }
     
+    @IBSegueAction func showActionView(_ coder: NSCoder) -> ActionViewController? {
+        guard let indexPath = birthDayTodayTableView.indexPathForSelectedRow else {
+            fatalError()
+        }
+        return ActionViewController(coder: coder, person: fetchedRC.object(at: indexPath))
+    }
+    
         private func refresh() {
         let request = Person.fetchRequest() as NSFetchRequest<Person>
         
@@ -74,21 +81,6 @@ extension BirthDayToDayViewController: UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! BirthDayToDayTableViewCell
         cell.config(person: fetchedRC.object(at: indexPath))
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        let sectionTitle = UILabel()
-        headerView.addSubview(sectionTitle)
-        sectionTitle.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            sectionTitle.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            sectionTitle.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-        ])
-        if let people = fetchedRC.sections?[section].objects as? [Person], let person = people.first {
-            sectionTitle.text = person.monthName
-        }
-        return headerView
     }
 }
 

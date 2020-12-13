@@ -6,11 +6,10 @@
 //
 
 import UIKit
-
+import UserNotifications
 
 class PersonViewController: UIViewController {
     var person: Person?
-    
     // MARK: - Properties
     let imagePickerController = UIImagePickerController()
     let datePicker = UIDatePicker()
@@ -47,6 +46,7 @@ class PersonViewController: UIViewController {
             person.mob = Int32(Calendar.current.dateComponents([.month], from: person.birthday).month!)
             person.dob = Int32(Calendar.current.dateComponents([.day], from: person.birthday).day!)
             person.notification = notificationSwitch.isOn
+            appDelegate.scheduleNotification(notificationType: "test", birthDay: DateComponents(calendar: Calendar.current, timeZone: .current,month: Int(person.mob), day: Int(person.dob), hour: 12, minute: 50, second: 0 ))
         }
         else {
             let person = Person(entity: Person.entity(), insertInto: context)
@@ -58,12 +58,21 @@ class PersonViewController: UIViewController {
             person.mob = Int32(Calendar.current.dateComponents([.month], from: dateFromDatePicker).month!)
             person.dob = Int32(Calendar.current.dateComponents([.day], from: dateFromDatePicker).day!)
             person.notification = notificationSwitch.isOn
-        }
+            appDelegate.scheduleNotification(notificationType: "test", birthDay: DateComponents(calendar: Calendar.current, timeZone: .current,month: Int(person.mob), day: Int(person.dob), hour: 13, minute: 08, second: 0 ))
+            }
         appDelegate.saveContext()
+        navigationController?.popViewController(animated: true)
     }
     @IBAction func changeAvatarButtonPressed(_ sender: UIButton) {
         showChangeAvatarActionSheet()
     }
+    
+    @IBAction func notificationSwitchPressed(_ sender: UISwitch) {
+        if !sender.isOn {
+            appDelegate.notificationCenter.removePendingNotificationRequests(withIdentifiers: [])
+        }
+    }
+    
     
     private func setupUI() {
         guard let person = self.person else {return}

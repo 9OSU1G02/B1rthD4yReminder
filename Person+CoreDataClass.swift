@@ -14,4 +14,7 @@ public class Person: NSManagedObject {
     var monthName: String {
         return DateFormatter().monthSymbols[Int(mob) - 1]
     }
+    var age: Int {
+        return Calendar.current.dateComponents([.year], from: birthday, to: Date()).year!
+    }
 }

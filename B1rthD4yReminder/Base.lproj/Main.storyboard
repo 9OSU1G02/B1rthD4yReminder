@@ -72,7 +72,7 @@
                                             <outlet property="dobLabel" destination="rZD-Hl-HRO" id="zF3-Tz-i0s"/>
                                             <outlet property="isTodayBirthdayLabel" destination="RaR-hU-MjN" id="3I3-7d-dkd"/>
                                             <outlet property="nameLabel" destination="P3k-va-7OD" id="vaC-Fh-NgZ"/>
-                                            <segue destination="Uok-vs-FTP" kind="show" id="L2l-jk-o9C"/>
+                                            <segue destination="Uok-vs-FTP" kind="show" destinationCreationSelector="showActionView:" id="L2l-jk-o9C"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -96,49 +96,76 @@
             </objects>
             <point key="canvasLocation" x="714.49275362318849" y="75.669642857142847"/>
         </scene>
-        <!--View Controller-->
+        <!--Action View Controller-->
         <scene sceneID="hIV-Rz-t0X">
             <objects>
-                <viewController id="Uok-vs-FTP" sceneMemberID="viewController">
+                <viewController id="Uok-vs-FTP" customClass="ActionViewController" customModule="B1rthD4yReminder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IBd-LL-pJ9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xe-Wv-41q">
-                                <rect key="frame" x="186" y="347" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Dez-kS-FGU">
+                                <rect key="frame" x="82" y="60" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="mZP-zR-WXD"/>
+                                    <constraint firstAttribute="height" constant="250" id="wD7-UM-KC7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Say something to congratulate Nguyen Quoc Huy 20th birthday" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4xe-Wv-41q">
+                                <rect key="frame" x="0.0" y="387.5" width="414" height="67.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfR-OO-N47">
-                                <rect key="frame" x="184" y="442" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syR-fX-hEV">
-                                <rect key="frame" x="186" y="480" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLz-A0-Efx">
-                                <rect key="frame" x="186" y="533" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="Dez-kS-FGU">
-                                <rect key="frame" x="109" y="68" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="W7O-FM-UN5">
+                                <rect key="frame" x="156.5" y="495" width="101" height="136"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syR-fX-hEV">
+                                        <rect key="frame" x="12.5" y="0.0" width="76" height="30"/>
+                                        <state key="normal" title="Send Email"/>
+                                        <connections>
+                                            <action selector="sendEmailPressed:" destination="Uok-vs-FTP" eventType="touchUpInside" id="loj-I3-oaa"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfR-OO-N47">
+                                        <rect key="frame" x="0.0" y="53" width="101" height="30"/>
+                                        <state key="normal" title="Send Message"/>
+                                        <connections>
+                                            <action selector="sendMessagePressed:" destination="Uok-vs-FTP" eventType="touchUpInside" id="1Z0-Ig-3Pg"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLz-A0-Efx">
+                                        <rect key="frame" x="35.5" y="106" width="30" height="30"/>
+                                        <state key="normal" title="Call"/>
+                                        <connections>
+                                            <action selector="callPressed:" destination="Uok-vs-FTP" eventType="touchUpInside" id="hTN-uK-3bp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H37-Cs-vb4"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W7O-FM-UN5" firstAttribute="top" secondItem="4xe-Wv-41q" secondAttribute="bottom" constant="40" id="AEY-gZ-BBL"/>
+                            <constraint firstItem="W7O-FM-UN5" firstAttribute="centerX" secondItem="IBd-LL-pJ9" secondAttribute="centerX" id="Dx6-sE-CQj"/>
+                            <constraint firstItem="4xe-Wv-41q" firstAttribute="centerX" secondItem="IBd-LL-pJ9" secondAttribute="centerX" id="Tpp-6M-Twr"/>
+                            <constraint firstItem="4xe-Wv-41q" firstAttribute="leading" secondItem="IBd-LL-pJ9" secondAttribute="leading" id="W0F-Bd-Ldp"/>
+                            <constraint firstItem="4xe-Wv-41q" firstAttribute="centerY" secondItem="IBd-LL-pJ9" secondAttribute="centerY" id="cqE-8x-Bsz"/>
+                            <constraint firstAttribute="trailing" secondItem="4xe-Wv-41q" secondAttribute="trailing" id="ecy-dL-UbP"/>
+                            <constraint firstItem="Dez-kS-FGU" firstAttribute="centerX" secondItem="IBd-LL-pJ9" secondAttribute="centerX" id="qZu-XM-aYg"/>
+                            <constraint firstItem="Dez-kS-FGU" firstAttribute="top" secondItem="H37-Cs-vb4" secondAttribute="top" constant="60" id="vk4-Dt-gGK"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0lc-XB-R9Q"/>
+                    <connections>
+                        <outlet property="avatarImageView" destination="Dez-kS-FGU" id="AR2-nM-4zI"/>
+                        <outlet property="birthdayText" destination="4xe-Wv-41q" id="beJ-Zr-FbQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFW-bm-cNR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1596" y="76"/>
+            <point key="canvasLocation" x="1595.6521739130435" y="75.669642857142847"/>
         </scene>
         <!--People View Controller-->
         <scene sceneID="pU2-ZE-lSf">
@@ -309,6 +336,9 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXU-dd-4rX">
                                                         <rect key="frame" x="232.5" y="0.0" width="89.5" height="31"/>
+                                                        <connections>
+                                                            <action selector="notificationSwitchPressed:" destination="4Ta-s7-dEU" eventType="valueChanged" id="awh-p9-dT8"/>
+                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>

@@ -28,13 +28,13 @@ class PersonTableViewCell: UITableViewCell {
         
         dobLabel.text = person.birthday.convertToDayMonthYearFormat()
         
-        isTodayBirthdayLabel.isHidden = !isTodayBirthDay(birthDay: person.birthday)
+        isTodayBirthdayLabel.isHidden = !isTodayBirthDay(dob: person.dob, mob: person.mob)
     }
     
     
-    private func isTodayBirthDay(birthDay: Date) -> Bool {
-        let diffMonth = Calendar.current.dateComponents([.month], from: birthDay, to: Date()).month
-        let diffDay = Calendar.current.dateComponents([.day], from: birthDay, to: Date()).day
-        return diffMonth! + diffDay! == 0
+    private func isTodayBirthDay(dob: Int32, mob: Int32) -> Bool {
+        let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month!
+        let currentDay = Calendar.current.dateComponents([.day], from: Date()).day!
+        return  dob == currentDay && mob == currentMonth
     }
 }
