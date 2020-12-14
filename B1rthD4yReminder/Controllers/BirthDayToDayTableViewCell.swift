@@ -16,24 +16,18 @@ class BirthDayToDayTableViewCell: UITableViewCell {
     
     func config(person: Person) {
         
-        nameLabel.text = person.name
+        nameLabel.text                  = person.name
         
         if let data = person.avatar {
-            avatarImageView.image = UIImage(data: data)
+            avatarImageView.image       = UIImage(data: data)
         }
         else {
-            avatarImageView.image = UIImage(systemName: "avatar")
+            avatarImageView.image       = UIImage(systemName: "avatar")
         }
         
         dobLabel.text = person.birthday.convertToDayMonthYearFormat()
         
-        isTodayBirthdayLabel.isHidden = !isTodayBirthDay(birthDay: person.birthday)
+        isTodayBirthdayLabel.isHidden   = !isTodayBirthDay(dob: person.dob, mob: person.mob)
     }
     
-    
-    private func isTodayBirthDay(birthDay: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.day,.month], from: birthDay, to: Date())
-        return diff.day == 0
-    }
-
 }

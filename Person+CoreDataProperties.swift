@@ -2,7 +2,7 @@
 //  Person+CoreDataProperties.swift
 //  B1rthD4yReminder
 //
-//  Created by Nguyen Quoc Huy on 12/12/20.
+//  Created by Nguyen Quoc Huy on 12/14/20.
 //
 //
 
@@ -18,12 +18,13 @@ extension Person {
 
     @NSManaged public var avatar: Data?
     @NSManaged public var birthday: Date
-    @NSManaged public var email: String?
+    @NSManaged public var dob: Int32
+    @NSManaged public var email: String
     @NSManaged public var mob: Int32
     @NSManaged public var name: String
     @NSManaged public var notification: Bool
-    @NSManaged public var phone: String?
-    @NSManaged public var dob: Int32
+    @NSManaged public var phone: String
+    @NSManaged public var id: String
 
 }
 

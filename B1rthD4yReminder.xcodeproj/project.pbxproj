@@ -10,6 +10,8 @@
 		B624D26E25833BE000403D56 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624D26C25833BE000403D56 /* Person+CoreDataClass.swift */; };
 		B624D26F25833BE000403D56 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624D26D25833BE000403D56 /* Person+CoreDataProperties.swift */; };
 		B624D27225833E5800403D56 /* PersonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B624D27125833E5800403D56 /* PersonTableViewCell.swift */; };
+		B6414A8E25872577001012E8 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6414A8D25872577001012E8 /* Constant.swift */; };
+		B6414A91258730FB001012E8 /* GlobalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6414A90258730FB001012E8 /* GlobalFunction.swift */; };
 		B655B59D2584AACE00EDD39E /* BirthDayToDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655B59C2584AACE00EDD39E /* BirthDayToDayViewController.swift */; };
 		B655B5A02584B12700EDD39E /* BirthDayToDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655B59F2584B12700EDD39E /* BirthDayToDayTableViewCell.swift */; };
 		B6A7FA682585F3E4006A84E8 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7FA672585F3E4006A84E8 /* ActionViewController.swift */; };
@@ -28,6 +30,8 @@
 		B624D26C25833BE000403D56 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
 		B624D26D25833BE000403D56 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B624D27125833E5800403D56 /* PersonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonTableViewCell.swift; sourceTree = "<group>"; };
+		B6414A8D25872577001012E8 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		B6414A90258730FB001012E8 /* GlobalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunction.swift; sourceTree = "<group>"; };
 		B655B59C2584AACE00EDD39E /* BirthDayToDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayToDayViewController.swift; sourceTree = "<group>"; };
 		B655B59F2584B12700EDD39E /* BirthDayToDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayToDayTableViewCell.swift; sourceTree = "<group>"; };
 		B6A7FA672585F3E4006A84E8 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
@@ -94,8 +98,8 @@
 			children = (
 				B6F4B1CF258203AD005268F5 /* PeopleViewController.swift */,
 				B6F4B1D225820412005268F5 /* PersonViewController.swift */,
-				B624D27125833E5800403D56 /* PersonTableViewCell.swift */,
 				B655B59C2584AACE00EDD39E /* BirthDayToDayViewController.swift */,
+				B624D27125833E5800403D56 /* PersonTableViewCell.swift */,
 				B655B59F2584B12700EDD39E /* BirthDayToDayTableViewCell.swift */,
 				B6A7FA672585F3E4006A84E8 /* ActionViewController.swift */,
 			);
@@ -106,6 +110,8 @@
 			isa = PBXGroup;
 			children = (
 				B6F4B1D625820A60005268F5 /* Extension.swift */,
+				B6414A90258730FB001012E8 /* GlobalFunction.swift */,
+				B6414A8D25872577001012E8 /* Constant.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -182,6 +188,7 @@
 			files = (
 				B6F4B1D325820412005268F5 /* PersonViewController.swift in Sources */,
 				B655B59D2584AACE00EDD39E /* BirthDayToDayViewController.swift in Sources */,
+				B6414A91258730FB001012E8 /* GlobalFunction.swift in Sources */,
 				B6A7FA682585F3E4006A84E8 /* ActionViewController.swift in Sources */,
 				B624D26E25833BE000403D56 /* Person+CoreDataClass.swift in Sources */,
 				B655B5A02584B12700EDD39E /* BirthDayToDayTableViewCell.swift in Sources */,
@@ -189,6 +196,7 @@
 				B624D27225833E5800403D56 /* PersonTableViewCell.swift in Sources */,
 				B6F4B1D0258203AD005268F5 /* PeopleViewController.swift in Sources */,
 				B624D26F25833BE000403D56 /* Person+CoreDataProperties.swift in Sources */,
+				B6414A8E25872577001012E8 /* Constant.swift in Sources */,
 				B6F4B1D725820A60005268F5 /* Extension.swift in Sources */,
 				B6F4B1B42581F329005268F5 /* AppDelegate.swift in Sources */,
 				B6F4B1B62581F329005268F5 /* SceneDelegate.swift in Sources */,

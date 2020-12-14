@@ -9,10 +9,7 @@ import UIKit
 import CoreData
 class BirthDayToDayViewController: UIViewController {
     
-    private var textQuery = ""
-    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    private var fetchedRC: NSFetchedResultsController<Person>!
+    private var textQuery       = ""
     
     @IBOutlet weak var birthDayTodayTableView: UITableView!
     override func viewDidLoad() {
@@ -32,33 +29,25 @@ class BirthDayToDayViewController: UIViewController {
         return ActionViewController(coder: coder, person: fetchedRC.object(at: indexPath))
     }
     
-        private func refresh() {
-        let request = Person.fetchRequest() as NSFetchRequest<Person>
+    private func refresh() {
+        let request                 = Person.fetchRequest() as NSFetchRequest<Person>
         
-        let currentMotn = Int32(Calendar.current.dateComponents([.month], from: Date()).month!)
-        let currentDay = Int32(Calendar.current.dateComponents([.day], from: Date()).day!)
+        let monthPredicate          = NSPredicate(format: "mob == %d", Date().currentMonthIntValue())
+        let dayPredicate            = NSPredicate(format: "dob == %d", Date().currentDayIntValue())
+        let compoundPredicate       = NSCompoundPredicate(type: .and, subpredicates: [monthPredicate, dayPredicate])
+        request.predicate           = compoundPredicate
         
-        let monthPredicate = NSPredicate(format: "mob == %d", currentMotn)
-        let dayPredicate = NSPredicate(format: "dob == %d", currentDay)
+        let sortByMonthOfBirth      = NSSortDescriptor(key: #keyPath(Person.mob), ascending: true)
+        let sortbyname                           = NSSortDescriptor(key: #keyPath(Person.name), ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        request.sortDescriptors     = [sortByMonthOfBirth, sortbyname]
         
-        if !textQuery.isEmpty {
-            let textQueryPredicate = NSPredicate(format: "name CONTAINS[cd] %@", textQuery)
-            let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [monthPredicate,dayPredicate,textQueryPredicate])
-            request.predicate = compoundPredicate
-            }
-        else {
-            let compoundPredicate = NSCompoundPredicate(type: .and, subpredicates: [monthPredicate, dayPredicate])
-            request.predicate = compoundPredicate
-        }
-        let monthOfBirth = NSSortDescriptor(key: #keyPath(Person.mob), ascending: true)
-        let sort = NSSortDescriptor(key: #keyPath(Person.name), ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
-        request.sortDescriptors = [monthOfBirth, sort]
-        fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(Person.mob), cacheName: nil)
         do {
+            fetchedRC               = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(Person.mob), cacheName: nil)
             try fetchedRC.performFetch()
         } catch let error as NSError {
             print("Could not fetch. \(error),\(error.userInfo)")
         }
+        
         birthDayTodayTableView.reloadData()
     }
 }
@@ -89,7 +78,7 @@ extension BirthDayToDayViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else {
             return
         }
-        textQuery = searchText
+        textQuery            = searchText
         refresh()
         birthDayTodayTableView.reloadData()
     }

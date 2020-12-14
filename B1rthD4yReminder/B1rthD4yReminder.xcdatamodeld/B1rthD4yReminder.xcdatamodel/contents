@@ -4,13 +4,14 @@
         <attribute name="avatar" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="birthday" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dob" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="email" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
         <attribute name="mob" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="notification" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="phone" optional="YES" attributeType="String"/>
+        <attribute name="phone" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Person" positionX="-63" positionY="-18" width="128" height="163"/>
+        <element name="Person" positionX="-63" positionY="-18" width="128" height="178"/>
     </elements>
 </model>

@@ -17,24 +17,17 @@ class PersonTableViewCell: UITableViewCell {
     
     func config(person: Person) {
         
-        nameLabel.text = person.name
+        nameLabel.text                  = person.name
         
-        if let data = person.avatar {
-            avatarImageView.image = UIImage(data: data)
+        if let data                     = person.avatar {
+            avatarImageView.image       = UIImage(data: data)
         }
         else {
-            avatarImageView.image = UIImage(systemName: "avatar")
+            avatarImageView.image       = UIImage(systemName: "avatar")
         }
         
         dobLabel.text = person.birthday.convertToDayMonthYearFormat()
         
-        isTodayBirthdayLabel.isHidden = !isTodayBirthDay(dob: person.dob, mob: person.mob)
-    }
-    
-    
-    private func isTodayBirthDay(dob: Int32, mob: Int32) -> Bool {
-        let currentMonth = Calendar.current.dateComponents([.month], from: Date()).month!
-        let currentDay = Calendar.current.dateComponents([.day], from: Date()).day!
-        return  dob == currentDay && mob == currentMonth
+        isTodayBirthdayLabel.isHidden   = !isTodayBirthDay(dob: person.dob, mob: person.mob)
     }
 }

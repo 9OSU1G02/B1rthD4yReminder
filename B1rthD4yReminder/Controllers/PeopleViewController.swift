@@ -9,11 +9,10 @@ import UIKit
 import CoreData
 class PeopleViewController: UIViewController {
     
-    let searchController = UISearchController()
-    private var textQuery = ""
-    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-      private var fetchedRC: NSFetchedResultsController<Person>!
+    // MARK: - Properties
+    let searchController    = UISearchController()
+    private var textQuery   = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         peopleTableView.delegate = self
@@ -29,6 +28,7 @@ class PeopleViewController: UIViewController {
     
     
     func configureSearchController() {
+        navigationItem.hidesSearchBarWhenScrolling = false
         searchController.searchResultsUpdater                   = self
         searchController.searchBar.placeholder                  = "Search for a username"
         searchController.obscuresBackgroundDuringPresentation   = false
@@ -36,14 +36,14 @@ class PeopleViewController: UIViewController {
     }
     
     private func refresh() {
-        let request = Person.fetchRequest() as NSFetchRequest<Person>
+        let request             = Person.fetchRequest() as NSFetchRequest<Person>
         if !textQuery.isEmpty {
-            request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", textQuery)
+            request.predicate   = NSPredicate(format: "name CONTAINS[cd] %@", textQuery)
         }
-        let monthOfBirth = NSSortDescriptor(key: #keyPath(Person.mob), ascending: true)
-        let sort = NSSortDescriptor(key: #keyPath(Person.name), ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+        let monthOfBirth        = NSSortDescriptor(key: #keyPath(Person.mob), ascending: true)
+        let sort                = NSSortDescriptor(key: #keyPath(Person.name), ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
         request.sortDescriptors = [monthOfBirth, sort]
-        fetchedRC = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(Person.mob), cacheName: nil)
+        fetchedRC                       = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: #keyPath(Person.mob), cacheName: nil)
         do {
             try fetchedRC.performFetch()
         } catch let error as NSError {
@@ -75,8 +75,8 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        let sectionTitle = UILabel()
+        let headerView          = UIView()
+        let sectionTitle        = UILabel()
         headerView.addSubview(sectionTitle)
         sectionTitle.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -84,16 +84,28 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
             sectionTitle.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
         ])
         if let people = fetchedRC.sections?[section].objects as? [Person], let person = people.first {
-            sectionTitle.text = person.monthName
+            sectionTitle.text   = person.monthName
         }
         return headerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let person = fetchedRC.object(at: indexPath)
-        let personVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "personVC") as! PersonViewController
+        let person      = fetchedRC.object(at: indexPath)
+        let personVC    = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "personVC") as! PersonViewController
         personVC.person = person
         navigationController?.pushViewController(personVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let person = fetchedRC.object(at: indexPath)
+        context.delete(person)
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [person.id])
+        appDelegate.saveContext()
+        refresh()
     }
 }
 
@@ -103,7 +115,7 @@ extension PeopleViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else {
             return
         }
-        textQuery = searchText
+        textQuery            = searchText
         refresh()
         peopleTableView.reloadData()
     }
@@ -114,5 +126,17 @@ extension PeopleViewController: UISearchResultsUpdating {
         searchBar.resignFirstResponder()
         refresh()
         peopleTableView.reloadData()
+    }
+}
+
+extension PeopleViewController: NSFetchedResultsControllerDelegate {
+     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard let cellIndex = indexPath else {return}
+        switch type {
+        case .delete:
+            peopleTableView.deleteRows(at: [cellIndex], with: .automatic)
+        default:
+            break
+        }
     }
 }

@@ -336,9 +336,6 @@
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KXU-dd-4rX">
                                                         <rect key="frame" x="232.5" y="0.0" width="89.5" height="31"/>
-                                                        <connections>
-                                                            <action selector="notificationSwitchPressed:" destination="4Ta-s7-dEU" eventType="valueChanged" id="awh-p9-dT8"/>
-                                                        </connections>
                                                     </switch>
                                                 </subviews>
                                             </stackView>
@@ -364,7 +361,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImageView" destination="Xux-QH-BoL" id="Pbw-3F-tze"/>
-                        <outlet property="dayOfBirthTextField" destination="Gli-Ud-fi8" id="j3o-sY-2uf"/>
+                        <outlet property="birthDayTextField" destination="Gli-Ud-fi8" id="j3o-sY-2uf"/>
                         <outlet property="emailTextField" destination="qE3-45-6mL" id="XNb-qg-jav"/>
                         <outlet property="nameTextField" destination="MlM-Dd-xoI" id="pGg-C8-wVq"/>
                         <outlet property="notificationSwitch" destination="KXU-dd-4rX" id="xtl-hv-H2b"/>
