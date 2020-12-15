@@ -104,7 +104,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         content.badge = 1
         content.categoryIdentifier = categoryIdentifire
 
-        let dateMatching = DateComponents(calendar: Calendar.current, timeZone: .current,month: Int(person.mob), day: Int(person.dob), hour: 14, minute: 57, second: 0)
+        let dateMatching = DateComponents(calendar: Calendar.current, timeZone: .current,month: Int(person.mob), day: Int(person.dob), hour: 0, minute: 0, second: 0)
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateMatching, repeats: true)
         let identifier = person.id
         let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)

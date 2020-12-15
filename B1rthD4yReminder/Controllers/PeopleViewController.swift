@@ -13,6 +13,7 @@ class PeopleViewController: UIViewController {
     let searchController    = UISearchController()
     private var textQuery   = ""
     
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         peopleTableView.delegate = self
@@ -24,6 +25,7 @@ class PeopleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         refresh()
     }
+    // MARK: - IBOutlets
     @IBOutlet weak var peopleTableView: UITableView!
     
     
@@ -57,6 +59,7 @@ class PeopleViewController: UIViewController {
 
 extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
     
+    // MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedRC.sections?.count ?? 0
     }
@@ -73,22 +76,28 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         cell.config(person: fetchedRC.object(at: indexPath))
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView          = UIView()
-        let sectionTitle        = UILabel()
-        headerView.addSubview(sectionTitle)
-        sectionTitle.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            sectionTitle.centerYAnchor.constraint(equalTo: headerView.centerYAnchor),
-            sectionTitle.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
-        ])
-        if let people = fetchedRC.sections?[section].objects as? [Person], let person = people.first {
-            sectionTitle.text   = person.monthName
+   
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sections = fetchedRC.sections, let objs = sections[section].objects as? [Person] else {
+            return ""
         }
-        return headerView
+        return objs.first?.monthName
     }
     
+     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let headerView = view as! UITableViewHeaderFooterView
+        headerView.backgroundView?.backgroundColor = UIColor(red: 236.0/255.0, green: 240.0/255.0, blue: 241.0/255.0, alpha: 1)
+        headerView.textLabel?.textColor = .red
+        
+        headerView.textLabel?.font = UIFont(name: "Avenir", size: 25.0)
+    }
+    
+     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
+    
+    // MARK: - TableView delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let person      = fetchedRC.object(at: indexPath)
         let personVC    = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "personVC") as! PersonViewController
@@ -134,7 +143,7 @@ extension PeopleViewController: NSFetchedResultsControllerDelegate {
         guard let cellIndex = indexPath else {return}
         switch type {
         case .delete:
-            peopleTableView.deleteRows(at: [cellIndex], with: .automatic)
+            peopleTableView.deleteRows(at: [cellIndex], with: .fade)
         default:
             break
         }

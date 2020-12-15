@@ -33,7 +33,7 @@ class ActionViewController: UIViewController {
     // MARK: - IBActions
     @IBAction func callPressed(_ sender: UIButton) {
         guard person.phone != "", let url = URL(string: "TEL://\(person.phone)") else {
-            present(warningAlert(message: "Use don't have phone number"), animated: true, completion: nil)
+            present(warningAlert(message: "User don't have phone number"), animated: true, completion: nil)
             return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)

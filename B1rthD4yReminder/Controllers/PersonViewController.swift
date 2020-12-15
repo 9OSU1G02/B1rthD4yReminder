@@ -32,12 +32,12 @@ class PersonViewController: UIViewController {
         present(warningAlert(message: "Please Fill in Name and Day of Birth"), animated: true, completion: nil)
         return
         }
-        if let person = person {
+        if let person   = person {
             setupPerson(person, id: person.id)
         }
         else {
-            let person = Person(entity: Person.entity(), insertInto: context)
-            person.id = UUID().uuidString
+            let person  = Person(entity: Person.entity(), insertInto: context)
+            person.id   = UUID().uuidString
             setupPerson(person,id: person.id)
         }
         appDelegate.saveContext()
@@ -46,13 +46,13 @@ class PersonViewController: UIViewController {
 
     
     private func setupPerson(_ person: Person, id: String) {
-        person.name = nameTextField.text!
-        person.avatar = avatarImageView.image?.pngData()
-        person.email = emailTextField.text ?? ""
-        person.phone = phoneNumberTextField.text ?? ""
+        person.name     = nameTextField.text!
+        person.avatar   = avatarImageView.image?.pngData()
+        person.email    = emailTextField.text ?? ""
+        person.phone    = phoneNumberTextField.text ?? ""
         person.birthday = birthDayTextField.text!.convertToDate() ?? Date()
-        person.mob = Int32(Calendar.current.dateComponents([.month], from: person.birthday).month!)
-        person.dob = Int32(Calendar.current.dateComponents([.day], from: person.birthday).day!)
+        person.mob      = Int32(Calendar.current.dateComponents([.month], from: person.birthday).month!)
+        person.dob      = Int32(Calendar.current.dateComponents([.day], from: person.birthday).day!)
         person.notification = notificationSwitch.isOn
         if person.notification{
             appDelegate.scheduleNotification(for: person)
@@ -69,17 +69,17 @@ class PersonViewController: UIViewController {
     
     private func setupUI() {
         guard let person = person else {return}
-        if let data = person.avatar {
+        if let data      = person.avatar {
             avatarImageView.image = UIImage(data: data)?.circleMasked
         }
         else {
             avatarImageView.image = UIImage(named: "avatar")
         }
-        nameTextField.text = person.name
-        birthDayTextField.text = person.birthday.convertToDayMonthYearFormat()
-        emailTextField.text = person.email
-        phoneNumberTextField.text = person.phone
-        notificationSwitch.isOn = person.notification
+        nameTextField.text          = person.name
+        birthDayTextField.text      = person.birthday.convertToDayMonthYearFormat()
+        emailTextField.text         = person.email
+        phoneNumberTextField.text   = person.phone
+        notificationSwitch.isOn     = person.notification
         
         phoneNumberTextField.addDoneButton()
     }
@@ -118,6 +118,7 @@ class PersonViewController: UIViewController {
     
     // MARK: - Date Picker
     func createDatePicker() {
+        datePicker.date = person?.birthday ?? Date()
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = .date
         birthDayTextField.inputView = datePicker
@@ -125,9 +126,9 @@ class PersonViewController: UIViewController {
     }
     
     func ToolBarForDatePicker() -> UIToolbar {
-        let toolbar = UIToolbar()
+        let toolbar     = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePress))
+        let doneButton  = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePress))
         toolbar.setItems([doneButton], animated: true)
         return toolbar
     }
