@@ -7,7 +7,7 @@
 
 import UIKit
 import MessageUI
-class ActionViewController: UIViewController {
+class ActionViewController: UIViewController,MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Properties
     var person: Person
@@ -47,7 +47,8 @@ class ActionViewController: UIViewController {
             controller.body                     = "Happy Birthday"
             //Phone number whom you wants to send the message
             controller.recipients               = ["\(person.phone)"]
-            controller.messageComposeDelegate   = self as? MFMessageComposeViewControllerDelegate
+            controller.messageComposeDelegate   = self
+            controller.delegate = self
             //When we click the MessageMe button, the controller will present to our view
             self.present(controller, animated: true, completion: nil)
         }
@@ -61,7 +62,8 @@ class ActionViewController: UIViewController {
     @IBAction func sendEmailPressed(_ sender: UIButton) {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self as? MFMailComposeViewControllerDelegate
+            mail.mailComposeDelegate = self
+            mail.delegate = self
             mail.setToRecipients(["\(person.email)"])
             mail.setSubject("HPBD")
             mail.setMessageBody("Happy Birthday", isHTML: false)
@@ -73,9 +75,10 @@ class ActionViewController: UIViewController {
     
     // MARK: - Delegate Method
     
-    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
                 self.dismiss(animated: true, completion: nil)
     }
+    
     
     
     func mailComposeController(_ controller:MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
