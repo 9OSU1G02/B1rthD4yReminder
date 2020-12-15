@@ -14,8 +14,10 @@ class BirthDayToDayViewController: UIViewController {
     @IBOutlet weak var birthDayTodayTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresh()
         birthDayTodayTableView.delegate = self
         birthDayTodayTableView.dataSource = self
+        birthDayTodayTableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +49,6 @@ class BirthDayToDayViewController: UIViewController {
         } catch let error as NSError {
             print("Could not fetch. \(error),\(error.userInfo)")
         }
-        
         birthDayTodayTableView.reloadData()
     }
 }

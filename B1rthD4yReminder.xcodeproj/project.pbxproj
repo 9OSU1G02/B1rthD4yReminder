@@ -14,6 +14,7 @@
 		B6414A91258730FB001012E8 /* GlobalFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6414A90258730FB001012E8 /* GlobalFunction.swift */; };
 		B655B59D2584AACE00EDD39E /* BirthDayToDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655B59C2584AACE00EDD39E /* BirthDayToDayViewController.swift */; };
 		B655B5A02584B12700EDD39E /* BirthDayToDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B655B59F2584B12700EDD39E /* BirthDayToDayTableViewCell.swift */; };
+		B66F10B9258867EA0016D41C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66F10B8258867EA0016D41C /* CustomTextField.swift */; };
 		B6A7FA682585F3E4006A84E8 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A7FA672585F3E4006A84E8 /* ActionViewController.swift */; };
 		B6F4B1B42581F329005268F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4B1B32581F329005268F5 /* AppDelegate.swift */; };
 		B6F4B1B62581F329005268F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F4B1B52581F329005268F5 /* SceneDelegate.swift */; };
@@ -34,6 +35,7 @@
 		B6414A90258730FB001012E8 /* GlobalFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunction.swift; sourceTree = "<group>"; };
 		B655B59C2584AACE00EDD39E /* BirthDayToDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayToDayViewController.swift; sourceTree = "<group>"; };
 		B655B59F2584B12700EDD39E /* BirthDayToDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthDayToDayTableViewCell.swift; sourceTree = "<group>"; };
+		B66F10B8258867EA0016D41C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B6A7FA672585F3E4006A84E8 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		B6F4B1B02581F329005268F5 /* B1rthD4yReminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = B1rthD4yReminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F4B1B32581F329005268F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B66F10B7258867D60016D41C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B66F10B8258867EA0016D41C /* CustomTextField.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B6F4B1A72581F329005268F5 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 		B6F4B1B22581F329005268F5 /* B1rthD4yReminder */ = {
 			isa = PBXGroup;
 			children = (
+				B66F10B7258867D60016D41C /* Views */,
 				B6F4B1D525820A4A005268F5 /* Utility */,
 				B6F4B1CD2582022B005268F5 /* Controllers */,
 				B6F4B1B32581F329005268F5 /* AppDelegate.swift */,
@@ -200,6 +211,7 @@
 				B6F4B1D725820A60005268F5 /* Extension.swift in Sources */,
 				B6F4B1B42581F329005268F5 /* AppDelegate.swift in Sources */,
 				B6F4B1B62581F329005268F5 /* SceneDelegate.swift in Sources */,
+				B66F10B9258867EA0016D41C /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

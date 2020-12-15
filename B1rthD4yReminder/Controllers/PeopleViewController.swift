@@ -16,8 +16,10 @@ class PeopleViewController: UIViewController {
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        refresh()
         peopleTableView.delegate = self
         peopleTableView.dataSource = self
+        peopleTableView.tableFooterView = UIView()
         configureSearchController()
     }
     
