@@ -67,6 +67,10 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         if fetchedRC.sections!.count == 0{
             tableView.setEmptyView(title: "You don't have any friend.", message: "Your friend list will be in here.", messageImage: #imageLiteral(resourceName: "6"))
         }
+        else {
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+        }
         return fetchedRC.sections!.count
     }
     

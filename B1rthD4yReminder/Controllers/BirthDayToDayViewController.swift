@@ -63,6 +63,10 @@ extension BirthDayToDayViewController: UITableViewDelegate, UITableViewDataSourc
         if fetchedRC.sections!.count == 0{
             tableView.setEmptyView(title: "No one is birthday today.", message: "Your friend birthday will be in here.", messageImage: #imageLiteral(resourceName: "9"))
         }
+        else {
+            tableView.backgroundView = nil
+            tableView.separatorStyle = .singleLine
+        }
         return fetchedRC.sections!.count
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
