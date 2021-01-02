@@ -138,8 +138,8 @@ extension UITableView {
         messageImageView.translatesAutoresizingMaskIntoConstraints = false
         messageLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.textColor = UIColor.black
-        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        titleLabel.textColor = UIColor.lightGray
+        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         
         messageLabel.textColor = UIColor.lightGray
         messageLabel.font = UIFont(name: "HelveticaNeue-Regular", size: 17)

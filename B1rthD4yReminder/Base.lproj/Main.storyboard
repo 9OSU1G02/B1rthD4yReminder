@@ -122,21 +122,27 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="syR-fX-hEV">
                                         <rect key="frame" x="12.333333333333343" y="0.0" width="76" height="30"/>
-                                        <state key="normal" title="Send Email"/>
+                                        <state key="normal" title="Send Email">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="sendEmailPressed:" destination="Uok-vs-FTP" eventType="touchUpInside" id="loj-I3-oaa"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bfR-OO-N47">
                                         <rect key="frame" x="0.0" y="53" width="101" height="30"/>
-                                        <state key="normal" title="Send Message"/>
+                                        <state key="normal" title="Send Message">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="sendMessagePressed:" destination="Uok-vs-FTP" eventType="touchUpInside" id="1Z0-Ig-3Pg"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLz-A0-Efx">
                                         <rect key="frame" x="35.333333333333343" y="106.00000000000006" width="30" height="30"/>
-                                        <state key="normal" title="Call"/>
+                                        <state key="normal" title="Call">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="callPressed:" destination="Uok-vs-FTP" eventType="touchUpInside" id="hTN-uK-3bp"/>
                                         </connections>
@@ -281,7 +287,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFY-t3-Qsa">
                                         <rect key="frame" x="92.666666666666686" y="250" width="135" height="36"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <state key="normal" title="Change Avatar"/>
+                                        <state key="normal" title="Change Avatar">
+                                            <color key="titleColor" systemColor="systemPinkColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="changeAvatarButtonPressed:" destination="4Ta-s7-dEU" eventType="touchUpInside" id="6ay-Pw-D0E"/>
                                         </connections>
@@ -384,6 +392,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bW-ow-IeP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="selectedImageTintColor" systemColor="systemPinkColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="w7d-CY-pee" kind="relationship" relationship="viewControllers" id="gto-7b-Oka"/>
@@ -403,6 +412,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9TC-tb-sHO">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="systemPinkColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -422,6 +432,9 @@
         <image name="person.badge.plus" catalog="system" width="128" height="124"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
