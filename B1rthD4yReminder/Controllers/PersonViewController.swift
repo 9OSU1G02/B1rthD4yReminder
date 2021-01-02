@@ -102,6 +102,7 @@ class PersonViewController: UIViewController {
     
     deinit {
         stopListenForKeyboardNotification()
+        print("Deinit PersonViewController")
     }
     
     func setupTextFieldDelegate() {
@@ -168,7 +169,7 @@ extension PersonViewController: UINavigationControllerDelegate, UIImagePickerCon
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
-            print("Cancel")
+            
         }))
         present(alert, animated: true, completion: nil)
     }

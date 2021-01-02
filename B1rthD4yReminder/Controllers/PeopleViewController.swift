@@ -63,7 +63,11 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - TableView DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedRC.sections?.count ?? 0
+        // if don't have section, the fetchedRC.sections will = 0
+        if fetchedRC.sections!.count == 0{
+            tableView.setEmptyView(title: "You don't have any friend.", message: "Your friend list will be in here.", messageImage: #imageLiteral(resourceName: "6"))
+        }
+        return fetchedRC.sections!.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

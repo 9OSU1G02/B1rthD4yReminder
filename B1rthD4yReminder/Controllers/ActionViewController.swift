@@ -57,7 +57,9 @@ class ActionViewController: UIViewController,MFMailComposeViewControllerDelegate
             print("Cannot send the message")
         }
     }
-    
+    deinit {
+        print("ActionView Deinit")
+    }
     
     @IBAction func sendEmailPressed(_ sender: UIButton) {
         if MFMailComposeViewController.canSendMail() {

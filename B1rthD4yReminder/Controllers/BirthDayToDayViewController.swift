@@ -51,17 +51,23 @@ class BirthDayToDayViewController: UIViewController {
         }
         birthDayTodayTableView.reloadData()
     }
+    deinit {
+        print("BirthDayToDay Deinit")
+    }
 }
 
 
 
 extension BirthDayToDayViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedRC.sections?.count ?? 0
+        if fetchedRC.sections!.count == 0{
+            tableView.setEmptyView(title: "No one is birthday today.", message: "Your friend birthday will be in here.", messageImage: #imageLiteral(resourceName: "9"))
+        }
+        return fetchedRC.sections!.count
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = fetchedRC.sections, let objs = sections[section].objects else {
+            tableView.setEmptyView(title: "No one is birthday today.", message: "Your friend birthday will be in here.", messageImage: #imageLiteral(resourceName: "swipe-right (1)"))
             return 0
         }
         return objs.count

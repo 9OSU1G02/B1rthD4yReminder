@@ -10,6 +10,7 @@ import CoreData
 import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    //#error("fix notification swith is obscued")
     let notificationCenter = UNUserNotificationCenter.current()
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         notificationCenter.delegate = self
